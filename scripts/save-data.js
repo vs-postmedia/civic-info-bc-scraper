@@ -1,5 +1,5 @@
-const fs = require('fs');
-let Parser = require('@json2csv/plainjs').Parser;
+import fs from 'fs';
+import { Parser } from '@json2csv/plainjs';
 
 async function saveData(data, filepath, format, data_dir) {
 	console.log(`Saving data to ${filepath}`);
@@ -24,4 +24,4 @@ async function saveData(data, filepath, format, data_dir) {
 }
 
 
-module.exports = saveData;
+export default saveData;

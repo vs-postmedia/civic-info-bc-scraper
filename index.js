@@ -1,66 +1,56 @@
-const fs = require('fs');
-const path = require('path');
-const axios = require('axios');
-const saveData = require('./scripts/save-data');
-const cheerioScraper = require('./scripts/cheerioScraper');
-const puppeteerScraper = require('./scripts/puppeteerScraper');
+import 'dotenv/config';
+// import fs from 'fs'
+import axios from 'axios';
+import path from 'path';
+import data2022 from './data/data2022.js';
+import { fileURLToPath } from 'url';
+import saveData from './scripts/save-data.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // VARS
 const data_dir = 'data';
-const tmp_data_dir = 'tmp-data';
 const filename = 'data'; // temp file for data
-const urls = ['https://www.gasbuddy.com/GasPrices/British%20Columbia/']; // URL to scrape
+// region_id 9 is Lower Mainland
+const url = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 
 
-async function init(urls, useCheerio) {
-	let html;
-	// get first url in the list
-	const url = urls.shift();
-	// clean it up a bit to use as a filename
-	const cleanUrl = url.split('//')[1].replace(/\//g, '_');
-	const htmlFilepath = `${tmp_data_dir}/${cleanUrl}.html`;
-	
-	// check if we already have the file downloaded
-	const fileExists = fs.existsSync(htmlFilepath);
-	
-	if (!fileExists) {
-		// download the HTML from the web server
-		console.log(`Downloading HTML from ${url}...`);
-		// fetchDeaths & fetchCases & other files
-		html = await axios.get(url);
+async function fetchData(url, apiKey) {
+	let data;
+
+	// fetch data
+	console.log(`Downloading HTML from ${url}...`);
+	try {
+		const resp = await axios.get(url, {
+			headers: {
+				'api-key': apiKey
+			}
+		});
 		
-		// save the HTML to disk
-		try {
-			await fs.promises.writeFile(path.join(__dirname, htmlFilepath), html.data, {flag: 'wx'});
-		} catch(err) { 
-			console.log(err);
-		}
-	} else {
-		console.log(`Skipping download for ${url} since ${cleanUrl} already exists.`);
+		data = resp.data;
+		saveData(resp.data, path.join(__dirname, `${data_dir}/${filename}`), 'json');
+	} catch (error) {
+		console.error('Error fetching data:', error);
 	}
-	
-	// load local copy of html
-	html = await fs.readFileSync(htmlFilepath);
 
-	// scrape downloaded file
-	const results = await processHTML(html, true);
+	return data
+}
+async function init(url) {
+	const apiKey = process.env.CIVICELECTIONSBC_API_KEY;
 
-	// if there's more links, let's do it again!
-	if(urls.length > 0) {
-		console.log('Downloading next url...');
-		downloadHTML(urls, true);
-	} else {
-		saveData(results, path.join(__dirname, `${data_dir}/${filename}`), 'csv');
-	}
+	// get data
+	const data = await fetchData(url, apikey);
+
+	// process data for dashboard
+	const processedData = await processData(data);
+
+	// saveData(processedData, path.join(__dirname, `${data_dir}/data-final`), 'csv');
 }
 
-// scrape & cache results
-async function processHTML(html, useCheerio) {
-	return (useCheerio) ? await cheerioScraper(html) : await puppeteerScraper(html);
-}
 
 // kick isht off!!!
-init(urls, true); // set 'useCheerio' to false to run puppeteer
+init(url); 
 
 
 
