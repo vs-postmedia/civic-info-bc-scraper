@@ -6775,7 +6775,7 @@
                 "candidate_usualname": "",
                 "previous_experience": "Unknown/Undisclosed",
                 "running_for": "MAYOR",
-                "elected": "YES",
+                "elected": "NO",
                 "electoral_organization": {
                     "electoral_organization_name": "ABC VANCOUVER",
                     "electoral_organization_address": "",
@@ -6785,7 +6785,7 @@
                 },
                 "acclamation": "",
                 "gender": "",
-                "votes_for": "55732"
+                "votes_for": "25732"
             },
             {
                 "candidate_first_name": "Mike",
@@ -7061,7 +7061,7 @@
                 "candidate_usualname": "",
                 "previous_experience": "Incumbent",
                 "running_for": "MAYOR",
-                "elected": "",
+                "elected": "YES",
                 "electoral_organization": {
                     "electoral_organization_name": "Forward With Kennedy Stewart",
                     "electoral_organization_address": "",
@@ -7071,7 +7071,7 @@
                 },
                 "acclamation": "",
                 "gender": "",
-                "votes_for": "29593"
+                "votes_for": "49593"
             },
             {
                 "candidate_first_name": "Dante",
