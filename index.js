@@ -102,11 +102,34 @@ function findMatchingMunicipalities(area, schoolDistrict, municipalities) {
 	return matches;
 }
 
+// school districts whose trustees govern multiple municipalities as a single board,
+// so every trustee (from every area) should appear on each municipality's list
+const COMBINED_TRUSTEE_DISTRICTS = ['Langley', 'North Vancouver'];
+
 function mergeTrusteeCandidates(data) {
 	const municipalities = getMunicipalities(data);
 	const schoolDistricts = getSchoolDistricts(data);
 
 	for (const schoolDistrict of schoolDistricts) {
+		if (COMBINED_TRUSTEE_DISTRICTS.includes(schoolDistrict.name)) {
+			const allTrusteeCandidates = schoolDistrict.school_district_areas.flatMap(area => area.candidates || []);
+			const allMatches = new Set();
+
+			for (const area of schoolDistrict.school_district_areas) {
+				findMatchingMunicipalities(area, schoolDistrict, municipalities).forEach(m => allMatches.add(m));
+			}
+
+			if (allMatches.size === 0) {
+				console.warn(`No municipality match for school district "${schoolDistrict.name}"`);
+				continue;
+			}
+
+			for (const municipality of allMatches) {
+				municipality.candidates.push(...allTrusteeCandidates);
+			}
+			continue;
+		}
+
 		for (const area of schoolDistrict.school_district_areas) {
 			const trusteeCandidates = area.candidates || [];
 			if (trusteeCandidates.length === 0) continue;
