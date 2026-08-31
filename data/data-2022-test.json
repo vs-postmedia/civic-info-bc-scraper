@@ -7971,6 +7971,536 @@
                 "acclamation": "",
                 "gender": "",
                 "votes_for": "10361"
+            },
+            {
+                "candidate_first_name": "Alfred",
+                "candidate_last_name": "Chien",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "ABC Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "67326"
+            },
+            {
+                "candidate_first_name": "Victoria",
+                "candidate_last_name": "Jung",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "ABC Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "69027"
+            },
+            {
+                "candidate_first_name": "Christopher JK",
+                "candidate_last_name": "Richardson",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "ABC Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "64048"
+            },
+            {
+                "candidate_first_name": "Josh",
+                "candidate_last_name": "Zhang",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "ABC Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "64370"
+            },
+            {
+                "candidate_first_name": "Rahul",
+                "candidate_last_name": "Aggarwal",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "NPA",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "18448"
+            },
+            {
+                "candidate_first_name": "Matiul",
+                "candidate_last_name": "Alam",
+                "candidate_usualname": "",
+                "previous_experience": "Served other",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "TEAM",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "20772"
+            },
+            {
+                "candidate_first_name": "Rory",
+                "candidate_last_name": "Brown",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "OneCity",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "38381"
+            },
+            {
+                "candidate_first_name": "Steve",
+                "candidate_last_name": "Cardwell",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "Vision Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "31045"
+            },
+            {
+                "candidate_first_name": "Lois",
+                "candidate_last_name": "Chan-Pedley",
+                "candidate_usualname": "",
+                "previous_experience": "Incumbent",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "GREEN",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "41356"
+            },
+            {
+                "candidate_first_name": "Kyla",
+                "candidate_last_name": "Epstein",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "OneCity",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "38890"
+            },
+            {
+                "candidate_first_name": "Preeti",
+                "candidate_last_name": "Faridkot",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "ABC Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "63807"
+            },
+            {
+                "candidate_first_name": "Aaron",
+                "candidate_last_name": "Fedora",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "NPA",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "15733"
+            },
+            {
+                "candidate_first_name": "Janet",
+                "candidate_last_name": "Fraser",
+                "candidate_usualname": "",
+                "previous_experience": "Incumbent",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "GREEN",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "41179"
+            },
+            {
+                "candidate_first_name": "Nadine C",
+                "candidate_last_name": "Goodine",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "NPA",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "15051"
+            },
+            {
+                "candidate_first_name": "Heming",
+                "candidate_last_name": "Hopkins",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "7416"
+            },
+            {
+                "candidate_first_name": "Milan",
+                "candidate_last_name": "Kljajic",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "NPA",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "13522"
+            },
+            {
+                "candidate_first_name": "Aaron",
+                "candidate_last_name": "Leung",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "Vision Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "30007"
+            },
+            {
+                "candidate_first_name": "Zelda",
+                "candidate_last_name": "Levine",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "8875"
+            },
+            {
+                "candidate_first_name": "Suzie",
+                "candidate_last_name": "Mah",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "COPE",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "42379"
+            },
+            {
+                "candidate_first_name": "Kera",
+                "candidate_last_name": "Mcarthur",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "Vision Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "23902"
+            },
+            {
+                "candidate_first_name": "Nick",
+                "candidate_last_name": "Poppell",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "GREEN",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "29729"
+            },
+            {
+                "candidate_first_name": "Jennifer",
+                "candidate_last_name": "Reddy",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "YES",
+                "electoral_organization": {
+                    "electoral_organization_name": "OneCity",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "44534"
+            },
+            {
+                "candidate_first_name": "Krista",
+                "candidate_last_name": "Sigurdson",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "OneCity",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "40792"
+            },
+            {
+                "candidate_first_name": "Gavin",
+                "candidate_last_name": "Somers",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "OneCity",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "33933"
+            },
+            {
+                "candidate_first_name": "Amanda",
+                "candidate_last_name": "Tengco",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "9668"
+            },
+            {
+                "candidate_first_name": "Hilary",
+                "candidate_last_name": "Thomson",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "Vision Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "28324"
+            },
+            {
+                "candidate_first_name": "Rocco",
+                "candidate_last_name": "Trigueros",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "COPE",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "29167"
+            },
+            {
+                "candidate_first_name": "Ashley",
+                "candidate_last_name": "Vaughan",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "NPA",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "17206"
+            },
+            {
+                "candidate_first_name": "Allan",
+                "candidate_last_name": "Wong",
+                "candidate_usualname": "",
+                "previous_experience": "Incumbent",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "Vision Vancouver",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "35761"
+            },
+            {
+                "candidate_first_name": "Karina",
+                "candidate_last_name": "Zeidler",
+                "candidate_usualname": "",
+                "previous_experience": "None",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "electoral_organization": {
+                    "electoral_organization_name": "VOTE Socialist",
+                    "electoral_organization_address": "",
+                    "electoral_organization_city": "",
+                    "electoral_organization_phone": "",
+                    "electoral_organization_email": ""
+                },
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "17710"
+            },
+            {
+                "candidate_first_name": "Karin",
+                "candidate_last_name": "Litzcke",
+                "candidate_usualname": "",
+                "previous_experience": "Unknown/Undisclosed",
+                "running_for": "TRUSTEE",
+                "elected": "",
+                "acclamation": "",
+                "gender": "",
+                "votes_for": "8570"
             }
         ]
     },
