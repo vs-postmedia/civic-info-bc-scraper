@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import saveData from './scripts/save-data.js';
+import schoolDistrictLookup from './data/schoolDistrictLookup.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,11 +16,15 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 // VARS
 const data_dir = 'data';
 const filename = 'data'; // temp file for data
-const url = 'https://localelections.ca/api/api.php?year=2022&region_id=9'; 
+const councilUrl = 'https://localelections.ca/api/api.php?region_id=9'; 
+const parkUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=13';
+const schoolUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=12';
+const ballotUrl = 'https://localelections.ca/api/ref_api.php?year=2026';
 // const url = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 // region_id=9  <–– Lower Mainland: INCLUDES SCHOOL DISTRICTS
 // regional_district_id=30 <–– Metro Vancouver: NO SCHOOL DISTRICTS
 // jurisdiction_type=13 <–– park board: NEEDS SEPARATE CALL
+// jurisdiction_type=12 <–– school board
 
 
 
@@ -42,69 +47,6 @@ async function fetchData(url, apiKey) {
 
 	return data
 }
-function normalize(str) {
-	return str.trim().toLowerCase();
-}
-
-function escapeRegExp(str) {
-	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-// top-level entries that hold their own council/mayor candidates directly
-function getMunicipalities(data) {
-	return data.filter(d => Array.isArray(d.candidates));
-}
-
-// top-level entries that hold trustee candidates grouped by school_district_areas
-function getSchoolDistricts(data) {
-	return data.filter(d => Array.isArray(d.school_district_areas));
-}
-
-// find the municipality/municipalities a school district area's trustees belong to
-function findMatchingMunicipalities(area, schoolDistrict, municipalities) {
-	const areaName = normalize(area.name);
-
-	// disambiguate places that share a name (e.g. Langley, North Vancouver) using
-	// keywords like "city"/"township"/"district" present in the area name
-	let typeHint = null;
-	if (/\bcity\b/.test(areaName)) typeHint = 'City';
-	else if (/\btownship\b/.test(areaName)) typeHint = 'Township';
-	else if (/\bdistrict\b/.test(areaName)) typeHint = 'District';
-
-	// areas qualified by words like "rural"/"island"/"greater"/"grand" refer to
-	// places outside a specific municipality (e.g. "Squamish Rural", "Vancouver Island",
-	// "Greater Vancouver" / "Grand Vancouver") and should never match one
-	const isDisqualified = /\b(rural|island|greater|grand)\b/.test(areaName);
-
-	// match municipality names as whole words
-	let matches = isDisqualified ? [] : municipalities.filter(m => {
-		const pattern = new RegExp(`\\b${escapeRegExp(normalize(m.name))}\\b`);
-		return pattern.test(areaName);
-	});
-
-	// drop matches that are just part of another, longer matched name
-	// (e.g. "Coquitlam" matching inside "Port Coquitlam"); places that share the
-	// exact same name (e.g. Langley, North Vancouver) are left for the type hint below
-	matches = matches.filter(m => {
-		const name = normalize(m.name);
-		return !matches.some(other => normalize(other.name).length > name.length && normalize(other.name).includes(name));
-	});
-
-	if (typeHint && matches.some(m => m.jurisdiction_type === typeHint)) {
-		matches = matches.filter(m => m.jurisdiction_type === typeHint);
-	}
-
-	// generic single-area districts (e.g. "At Large") fall back to the district's own name
-	if (matches.length === 0 && schoolDistrict.school_district_areas.length === 1) {
-		matches = municipalities.filter(m => normalize(m.name) === normalize(schoolDistrict.name));
-	}
-
-	return matches;
-}
-
-// school districts whose trustees govern multiple municipalities as a single board,
-// so every trustee (from every area) should appear on each municipality's list
-const COMBINED_TRUSTEE_DISTRICTS = ['Langley', 'North Vancouver'];
 
 function mergeTrusteeCandidates(data) {
 	const municipalities = getMunicipalities(data);
@@ -150,33 +92,120 @@ function mergeTrusteeCandidates(data) {
 	return data;
 }
 
-async function processData(data) {
+async function processData(councilData, vanParkData) {
+	const schoolDistrictAreaIdsByMunicipalityId = new Map(
+		schoolDistrictLookup.map(({ id, school_district_areas }) => [
+			id,
+			Array.isArray(school_district_areas) ? school_district_areas : [school_district_areas]
+		])
+	);
+	const schoolDistrictByAreaId = new Map(
+		councilData
+			.filter(({ jurisdiction_type }) => jurisdiction_type === 'School District')
+			.flatMap(schoolDistrict =>
+				(schoolDistrict.school_district_areas || []).map(({ id }) => [id, schoolDistrict])
+			)
+	);
 
-	// merge school trustees into candidates array
-	mergeTrusteeCandidates(data);
+	const processedData = councilData.map(({
+		id,
+		ballots_cast,
+		candidates,
+		city,
+		councillors_to_elect,
+		estimated_eligible_voters,
+		jurisdiction_type,
+		name,
+		population,
+		region,
+		regional_district,
+		registered_voters,
+		school_district_areas
+	}) => ({
+		id,
+		ballots_cast,
+		candidates,
+		city,
+		councillors_to_elect,
+		estimated_eligible_voters,
+		jurisdiction_type,
+		name,
+		population,
+		region,
+		regional_district,
+		registered_voters,
+		...(() => {
+			const areaIds = schoolDistrictAreaIdsByMunicipalityId.get(id) || [];
+			const schoolDistrict = areaIds.map(areaId => schoolDistrictByAreaId.get(areaId)).find(Boolean);
+			return schoolDistrict && {
+				school_district: {
+					id: schoolDistrict.id,
+					jurisdiction_type: schoolDistrict.jurisdiction_type,
+					city: schoolDistrict.city,
+					school_district_areas: schoolDistrict.school_district_areas
+				}
+			};
+		})(),
+		...(id === '139' && { park_board: vanParkData }) // add vancouver park board
+	}));
 
-	// filter for metro van
-	const metroData = data.filter(d => d.regional_district === 'Metro Vancouver');
+	// Electoral Area A
+	const metroVancouverArea = councilData
+		.find(({ id }) => id === '164')
+		?.electoral_areas
+		?.find(({ id }) => id === '85');
 
-	return metroData;
+	return [
+		...processedData.filter(({ id, jurisdiction_type }) =>
+			id !== '164' && jurisdiction_type !== 'School District'
+		),
+		...(metroVancouverArea ? [metroVancouverArea] : [])
+	];
 }
 
-async function init(url) {
+async function init() {
 	const apiKey = process.env.CIVICELECTIONSBC_API_KEY;
 
 	// get data
-	const data = await fetchData(url, apiKey);
+	const councilData = await fetchData(councilUrl, apiKey);
+	const parkData = await fetchData(parkUrl, apiKey);
+	// const ballotData = await fetchData(ballotUrl, apiKey)
+ 
+	// we only want some fields from Vancouver Park Board
+	const vanParkData = parkData
+		.filter(d => d.id === '301')
+		.map(({
+			id,
+			name,
+			jurisdiction_type,
+			councillors_to_elect,
+			estimated_eligible_voters,
+			ballots_cast,
+			registered_voters,
+			candidates
+		}) => ({
+			id,
+			name,
+			jurisdiction_type,
+			councillors_to_elect,
+			estimated_eligible_voters,
+			ballots_cast,
+			registered_voters,
+			candidates
+		}));
 
 	// process data for dashboard
-	const processedData = await processData(data);
+	const processedData = await processData(councilData, vanParkData[0]);
 
-	saveData(processedData, path.join(__dirname, `${data_dir}/data-final`), 'csv');
 	saveData(processedData, path.join(__dirname, `${data_dir}/data-2022`), 'json');
+	// saveData(councilData, path.join(__dirname, `${data_dir}/council-data`), 'json');
+	// saveData(schoolData, path.join(__dirname, `${data_dir}/school-districts`), 'json');
+	// saveData(ballotData, path.join(__dirname, `${data_dir}/ballots-2026`), 'json');
 }
 
 
 // kick isht off!!!
-init(url); 
+init(); 
 
 
 
