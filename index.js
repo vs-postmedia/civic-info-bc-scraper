@@ -20,6 +20,7 @@ const councilUrl = 'https://localelections.ca/api/api.php?region_id=9';
 const parkUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=13';
 const schoolUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=12';
 const ballotUrl = 'https://localelections.ca/api/ref_api.php?year=2026';
+const cpMonths = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
 // const url = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 // region_id=9  <–– Lower Mainland: INCLUDES SCHOOL DISTRICTS
 // regional_district_id=30 <–– Metro Vancouver: NO SCHOOL DISTRICTS
@@ -199,8 +200,28 @@ async function init() {
 
 	// process data for dashboard
 	const processedData = await processData(councilData, vanParkData[0]);
+	const timestampParts = new Intl.DateTimeFormat('en-CA', {
+		timeZone: 'America/Vancouver',
+		month: 'numeric',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: '2-digit',
+		hour12: true
+	}).formatToParts();
+	const timestampValues = Object.fromEntries(
+		timestampParts
+			.filter(({ type }) => type !== 'literal')
+			.map(({ type, value }) => [type, value])
+	);
+	const month = cpMonths[Number(timestampValues.month) - 1];
+	const dayPeriod = timestampValues.dayPeriod.toLowerCase();
 
-	saveData(processedData, path.join(__dirname, `${data_dir}/data-2022`), 'json');
+	const outputData = {
+		data: processedData,
+		timestamp: `${month} ${timestampValues.day}, ${timestampValues.hour}:${timestampValues.minute} ${dayPeriod}`
+	};
+
+	saveData(outputData, path.join(__dirname, `${data_dir}/data-2022`), 'json');
 	// saveData(councilData, path.join(__dirname, `${data_dir}/council-data`), 'json');
 	// saveData(schoolData, path.join(__dirname, `${data_dir}/school-districts`), 'json');
 	// saveData(ballotData, path.join(__dirname, `${data_dir}/ballots-2026`), 'json');
@@ -209,7 +230,4 @@ async function init() {
 
 // kick isht off!!!
 init(); 
-
-
-
 
