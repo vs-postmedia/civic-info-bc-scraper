@@ -221,7 +221,7 @@ async function init() {
 		timestamp: `${month} ${timestampValues.day}, ${timestampValues.hour}:${timestampValues.minute} ${dayPeriod}`
 	};
 
-	saveData(outputData, path.join(__dirname, `${data_dir}/data-2022`), 'json');
+	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
 	// saveData(councilData, path.join(__dirname, `${data_dir}/council-data`), 'json');
 	// saveData(schoolData, path.join(__dirname, `${data_dir}/school-districts`), 'json');
 	// saveData(ballotData, path.join(__dirname, `${data_dir}/ballots-2026`), 'json');
