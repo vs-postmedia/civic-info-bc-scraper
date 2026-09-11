@@ -137,12 +137,15 @@ async function processData(councilData, vanParkData) {
 		...(() => {
 			const areaIds = schoolDistrictAreaIdsByMunicipalityId.get(id) || [];
 			const schoolDistrict = areaIds.map(areaId => schoolDistrictByAreaId.get(areaId)).find(Boolean);
+			const schoolDistrictArea = schoolDistrict?.school_district_areas?.find(({ id }) =>
+				areaIds.includes(id)
+			);
 			return schoolDistrict && {
 				school_district: {
 					id: schoolDistrict.id,
 					jurisdiction_type: schoolDistrict.jurisdiction_type,
 					city: schoolDistrict.city,
-					school_district_areas: schoolDistrict.school_district_areas
+					school_district_areas: schoolDistrictArea ? [schoolDistrictArea] : []
 				}
 			};
 		})(),
