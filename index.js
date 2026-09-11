@@ -163,7 +163,7 @@ async function processData(councilData, vanParkData) {
 		...processedData.filter(({ id, jurisdiction_type }) =>
 			id !== '164' && jurisdiction_type !== 'School District'
 		),
-		...(metroVancouverArea ? [metroVancouverArea] : [])
+		...(metroVancouverArea ? [{ ...metroVancouverArea, id: '164_85' }] : [])
 	];
 }
 
