@@ -30,6 +30,13 @@ const cpMonths = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.',
 // jurisdiction_type=12 <–– school board
 
 
+async function addBallotResults(processedData, ballotResults) {
+	return processedData.map(item => ({
+		...item,
+		ballot_results: ballotResults.filter(({ id }) => id === item.id)
+	}));
+}
+
 async function fetchData(url, apiKey) {
 	let data;
 
@@ -131,6 +138,17 @@ function mergeTrusteeCandidates(data) {
 	return data;
 }
 
+function mergeBallotResults(ballotSummaries, ballotData) {
+	const ballotDataByRefId = new Map(ballotData.map(d => [d.refid, d]));
+
+	const mergedData = ballotSummaries.map(summary => {
+		const { passed, votes_against, votes_for } = ballotDataByRefId.get(summary.refid) || {};
+		return { ...summary, passed, votes_against, votes_for };
+	});
+
+	return mergedData.filter(d => ballotLookup.includes(d.name)); 
+}
+
 async function processData(councilData, vanParkData) {
 	const schoolDistrictAreaIdsByMunicipalityId = new Map(
 		schoolDistrictLookup.map(({ id, school_district_areas }) => [
@@ -205,28 +223,18 @@ async function processData(councilData, vanParkData) {
 	];
 }
 
-function mergeBallotResults(ballotSummaries, ballotData) {
-	const ballotDataByRefId = new Map(ballotData.map(d => [d.refid, d]));
-
-	const mergedData =  ballotSummaries.map(summary => {
-		const { passed, votes_against, votes_for } = ballotDataByRefId.get(summary.refid) || {};
-		return { ...summary, passed, votes_against, votes_for };
-	});
-
-	return mergedData.filter(d => ballotLookup.includes(d.name)); 
-}
-
 async function init() {
 	const apiKey = process.env.CIVICELECTIONSBC_API_KEY;
 
 	// get data
-	const councilData = await fetchData(councilUrl, apiKey);
 	const parkData = await fetchData(parkUrl, apiKey);
 	const ballotData = await fetchData(ballotUrl, apiKey);
+	const councilData = await fetchData(councilUrl, apiKey);
 
 	/*
 	// PROCESS DATA
 	*/
+
 	// add summaries to ballot data
 	const ballotResults = mergeBallotResults(ballotSummaries, ballotData);
  
@@ -254,10 +262,14 @@ async function init() {
 		}));
 		
 	const processedData = await processData(councilData, vanParkData[0]);
-	const turnoutData = await getTurnout(processedData);
+
+	const finalData = await addBallotResults(processedData, ballotResults);
+	
+	// not sure if we'll use this...
+	const turnoutData = await getTurnout(finalData);
 
 	const outputData = {
-		data: processedData,
+		data: finalData,
 		ballotData: ballotResults,
 		timestamp: formatTimestamp()
 	};
