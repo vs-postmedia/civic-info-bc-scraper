@@ -138,6 +138,28 @@ function mergeTrusteeCandidates(data) {
 	return data;
 }
 
+const CANDIDATE_FIELDS_TO_REMOVE = [
+	'candidate_usualname',
+	'candidate_contact_consent',
+	'candidate_phone',
+	'candidate_cell',
+	'candidate_email',
+	'candidate_website',
+	'candidate_twitter',
+	'candidate_bluesky',
+	'candidate_facebook',
+	'candidate_instagram',
+	'candidate_youtube'
+];
+
+function stripCandidateFields(candidates) {
+	return (candidates || []).map(candidate => {
+		const filtered = { ...candidate };
+		CANDIDATE_FIELDS_TO_REMOVE.forEach(field => delete filtered[field]);
+		return filtered;
+	});
+}
+
 function mergeBallotResults(ballotSummaries, ballotData) {
 	const ballotDataByRefId = new Map(ballotData.map(d => [d.refid, d]));
 
@@ -149,8 +171,7 @@ function mergeBallotResults(ballotSummaries, ballotData) {
 	return mergedData.filter(d => ballotLookup.includes(d.name)); 
 }
 
-async function processData(councilData, vanParkData) {
-	const schoolDistrictAreaIdsByMunicipalityId = new Map(
+async function processData(councilData, vanParkData) {	const schoolDistrictAreaIdsByMunicipalityId = new Map(
 		schoolDistrictLookup.map(({ id, school_district_areas }) => [
 			id,
 			Array.isArray(school_district_areas) ? school_district_areas : [school_district_areas]
@@ -181,7 +202,7 @@ async function processData(councilData, vanParkData) {
 	}) => ({
 		id,
 		ballots_cast,
-		candidates,
+		candidates: stripCandidateFields(candidates),
 		city,
 		councillors_to_elect,
 		estimated_eligible_voters,
@@ -202,7 +223,9 @@ async function processData(councilData, vanParkData) {
 					id: schoolDistrict.id,
 					jurisdiction_type: schoolDistrict.jurisdiction_type,
 					city: schoolDistrict.city,
-					school_district_areas: schoolDistrictArea ? [schoolDistrictArea] : []
+					school_district_areas: schoolDistrictArea
+						? [{ ...schoolDistrictArea, candidates: stripCandidateFields(schoolDistrictArea.candidates) }]
+						: []
 				}
 			};
 		})(),
@@ -276,7 +299,6 @@ async function init() {
 
 	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
 	saveData(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
-	// saveData(ballotData, path.join(__dirname, `${data_dir}/ballots-2026`), 'json');
 }
 
 
