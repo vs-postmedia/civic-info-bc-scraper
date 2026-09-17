@@ -20909,7 +20909,7 @@
         },
         {
             "id": "139",
-            "ballots_cast": null,
+            "ballots_cast": "50000",
             "candidates": [
                 {
                     "candidate_first_name": "Colleen",
@@ -20927,7 +20927,7 @@
                     "candidate_youtube": "",
                     "previous_experience": "Unknown/Undisclosed",
                     "running_for": "MAYOR",
-                    "elected": null,
+                    "elected": "YES",
                     "electoral_organization": {
                         "electoral_organization_name": "TEAM for a Livable Vancouver Association",
                         "electoral_organization_address": "",
@@ -20937,7 +20937,7 @@
                     },
                     "acclamation": "",
                     "gender": "F",
-                    "votes_for": null
+                    "votes_for": "34000"
                 },
                 {
                     "candidate_first_name": "John",
@@ -20965,7 +20965,7 @@
                     },
                     "acclamation": "",
                     "gender": "M",
-                    "votes_for": null
+                    "votes_for": "13000"
                 },
                 {
                     "candidate_first_name": "Kathleen",
@@ -20983,7 +20983,7 @@
                     "candidate_youtube": "",
                     "previous_experience": "None",
                     "running_for": "COUNCILLOR",
-                    "elected": null,
+                    "elected": "YES",
                     "electoral_organization": {
                         "electoral_organization_name": "TEAM for a Livable Vancouver Association",
                         "electoral_organization_address": "",
@@ -20993,7 +20993,7 @@
                     },
                     "acclamation": "",
                     "gender": "F",
-                    "votes_for": null
+                    "votes_for": "34000"
                 },
                 {
                     "candidate_first_name": "Raj ",
@@ -22638,7 +22638,7 @@
                         "id": "808",
                         "name": "Vancouver School District 39",
                         "councillors_to_elect": "9",
-                        "ballots_cast": null,
+                        "ballots_cast": "35000",
                         "estimated_eligible_voters": "0",
                         "candidates": [
                             {
@@ -22657,7 +22657,7 @@
                                 "candidate_youtube": "",
                                 "previous_experience": "None",
                                 "running_for": "TRUSTEE",
-                                "elected": null,
+                                "elected": "YES",
                                 "electoral_organization": {
                                     "electoral_organization_name": "Vote Vancouver",
                                     "electoral_organization_address": "",
@@ -22667,7 +22667,7 @@
                                 },
                                 "acclamation": "",
                                 "gender": "F",
-                                "votes_for": null
+                                "votes_for": "14000"
                             },
                             {
                                 "candidate_first_name": "Amarys",
@@ -23491,7 +23491,7 @@
                 "jurisdiction_type": "Park Board",
                 "councillors_to_elect": "7",
                 "estimated_eligible_voters": "479242",
-                "ballots_cast": null,
+                "ballots_cast": "5000",
                 "registered_voters": "",
                 "candidates": [
                     {
@@ -23510,7 +23510,7 @@
                         "candidate_youtube": "",
                         "previous_experience": "None",
                         "running_for": "COMMISSIONER",
-                        "elected": null,
+                        "elected": "YES",
                         "electoral_organization": {
                             "electoral_organization_name": "ABC Vancouver",
                             "electoral_organization_address": "",
@@ -23520,7 +23520,7 @@
                         },
                         "acclamation": "",
                         "gender": "M",
-                        "votes_for": null
+                        "votes_for": "2500"
                     },
                     {
                         "candidate_first_name": "Michael Robert",
@@ -24446,9 +24446,9 @@
                     "name": "Vancouver",
                     "summary": "Plebiscite on drug use",
                     "question": "Plebiscite Question\r\nVancouver has experienced unprecedented levels of street disorder, open-air hard drug use, and disruption to community safety and individual health. \r\nTherefore: 1 Are you in favour of the City of Vancouver strengthening its laws to forbid open-air hard drug (Heroin, Meth, Fentanyl, and Crack) use in public spaces?\r\n\r\n2 Should the City of Vancouver formally ask the Province of BC to convert portions of the old St. Paul’s Hospital, or another similar site, into a secure medical facility that provides acute voluntary and 100-plus involuntary care beds for individuals posing a serious risk to themselves or others due to severe substance use and mental health disorders?",
-                    "passed": null,
-                    "votes_against": null,
-                    "votes_for": null
+                    "passed": "NO",
+                    "votes_against": "5600",
+                    "votes_for": "1000"
                 },
                 {
                     "refid": "65",
