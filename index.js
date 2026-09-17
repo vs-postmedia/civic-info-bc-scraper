@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import saveData from './scripts/save-data.js';
+import ballotSummaries from './data/ballot-summaries.js';
 import schoolDistrictLookup from './data/schoolDistrictLookup.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,13 +21,13 @@ const councilUrl = 'https://localelections.ca/api/api.php?region_id=9';
 const parkUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=13';
 const schoolUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=12';
 const ballotUrl = 'https://localelections.ca/api/ref_api.php?year=2026';
+const ballotLookup = ['Langley (City)', 'Metro Vancouver (Regional District)', 'Vancouver'];
 const cpMonths = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
 // const url = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 // region_id=9  <–– Lower Mainland: INCLUDES SCHOOL DISTRICTS
 // regional_district_id=30 <–– Metro Vancouver: NO SCHOOL DISTRICTS
 // jurisdiction_type=13 <–– park board: NEEDS SEPARATE CALL
 // jurisdiction_type=12 <–– school board
-
 
 
 async function fetchData(url, apiKey) {
@@ -47,6 +48,43 @@ async function fetchData(url, apiKey) {
 	}
 
 	return data
+}
+
+function formatTimestamp() {
+	const timestampParts = new Intl.DateTimeFormat('en-CA', {
+		timeZone: 'America/Vancouver',
+		month: 'numeric',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: '2-digit',
+		hour12: true
+	}).formatToParts();
+	
+	const timestampValues = Object.fromEntries(
+		timestampParts
+			.filter(({ type }) => type !== 'literal')
+			.map(({ type, value }) => [type, value])
+	);
+	const month = cpMonths[Number(timestampValues.month) - 1];
+	const dayPeriod = timestampValues.dayPeriod.toLowerCase();
+	
+	return `${month} ${timestampValues.day}, ${timestampValues.hour}:${timestampValues.minute} ${dayPeriod}`;
+}
+
+async function getTurnout(data) {
+	return data.map(({
+		id,
+		name,
+		jurisdiction_type,
+		ballots_cast,
+		estimated_eligible_voters
+	}) => ({
+		id,
+		name,
+		jurisdiction_type,
+		ballots_cast,
+		estimated_eligible_voters
+	}));
 }
 
 function mergeTrusteeCandidates(data) {
@@ -167,13 +205,30 @@ async function processData(councilData, vanParkData) {
 	];
 }
 
+function mergeBallotResults(ballotSummaries, ballotData) {
+	const ballotDataByRefId = new Map(ballotData.map(d => [d.refid, d]));
+
+	const mergedData =  ballotSummaries.map(summary => {
+		const { passed, votes_against, votes_for } = ballotDataByRefId.get(summary.refid) || {};
+		return { ...summary, passed, votes_against, votes_for };
+	});
+
+	return mergedData.filter(d => ballotLookup.includes(d.name)); 
+}
+
 async function init() {
 	const apiKey = process.env.CIVICELECTIONSBC_API_KEY;
 
 	// get data
 	const councilData = await fetchData(councilUrl, apiKey);
 	const parkData = await fetchData(parkUrl, apiKey);
-	// const ballotData = await fetchData(ballotUrl, apiKey)
+	const ballotData = await fetchData(ballotUrl, apiKey);
+
+	/*
+	// PROCESS DATA
+	*/
+	// add summaries to ballot data
+	const ballotResults = mergeBallotResults(ballotSummaries, ballotData);
  
 	// we only want some fields from Vancouver Park Board
 	const vanParkData = parkData
@@ -197,33 +252,18 @@ async function init() {
 			registered_voters,
 			candidates
 		}));
-
-	// process data for dashboard
+		
 	const processedData = await processData(councilData, vanParkData[0]);
-	const timestampParts = new Intl.DateTimeFormat('en-CA', {
-		timeZone: 'America/Vancouver',
-		month: 'numeric',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: '2-digit',
-		hour12: true
-	}).formatToParts();
-	const timestampValues = Object.fromEntries(
-		timestampParts
-			.filter(({ type }) => type !== 'literal')
-			.map(({ type, value }) => [type, value])
-	);
-	const month = cpMonths[Number(timestampValues.month) - 1];
-	const dayPeriod = timestampValues.dayPeriod.toLowerCase();
+	const turnoutData = await getTurnout(processedData);
 
 	const outputData = {
 		data: processedData,
-		timestamp: `${month} ${timestampValues.day}, ${timestampValues.hour}:${timestampValues.minute} ${dayPeriod}`
+		ballotData: ballotResults,
+		timestamp: formatTimestamp()
 	};
 
 	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
-	// saveData(councilData, path.join(__dirname, `${data_dir}/council-data`), 'json');
-	// saveData(schoolData, path.join(__dirname, `${data_dir}/school-districts`), 'json');
+	saveData(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
 	// saveData(ballotData, path.join(__dirname, `${data_dir}/ballots-2026`), 'json');
 }
 
