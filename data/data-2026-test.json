@@ -6980,7 +6980,7 @@
         },
         {
             "id": "61",
-            "ballots_cast": null,
+            "ballots_cast": "5000",
             "candidates": [
                 {
                     "candidate_first_name": "Gurjit",
