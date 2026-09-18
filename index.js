@@ -156,6 +156,12 @@ function stripCandidateFields(candidates) {
 	return (candidates || []).map(candidate => {
 		const filtered = { ...candidate };
 		CANDIDATE_FIELDS_TO_REMOVE.forEach(field => delete filtered[field]);
+		
+		['candidate_first_name', 'candidate_last_name'].forEach(field => {
+			if (typeof filtered[field] === 'string') {
+				filtered[field] = filtered[field].replace(/&#39;/g, '’');
+			}
+		});
 		return filtered;
 	});
 }
@@ -171,7 +177,8 @@ function mergeBallotResults(ballotSummaries, ballotData) {
 	return mergedData.filter(d => ballotLookup.includes(d.name)); 
 }
 
-async function processData(councilData, vanParkData) {	const schoolDistrictAreaIdsByMunicipalityId = new Map(
+async function processData(councilData, vanParkData) {	
+	const schoolDistrictAreaIdsByMunicipalityId = new Map(
 		schoolDistrictLookup.map(({ id, school_district_areas }) => [
 			id,
 			Array.isArray(school_district_areas) ? school_district_areas : [school_district_areas]
