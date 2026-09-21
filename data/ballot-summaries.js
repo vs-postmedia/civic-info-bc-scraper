@@ -4,7 +4,7 @@ export default [
         "id": "139",
         "name": "Vancouver",
         "summary": "Plebiscite on drug use",
-        "question": "<p>Vancouver has experienced unprecedented levels of street disorder, open-air hard drug use, and disruption to community safety and individual health. Therefore:</p><p>1 Are you in favour of the City of Vancouver strengthening its laws to forbid open-air hard drug (Heroin, Meth, Fentanyl, and Crack) use in public spaces?</p><p>2 Should the City of Vancouver formally ask the Province of BC to convert portions of the old St. Paul’s Hospital or another similar site into a secure medical facility that provides acute voluntary and 100-plus involuntary care beds for individuals posing a serious risk to themselves or others due to severe substance use and mental health disorders?</p>"
+        "question": "Vancouver has experienced unprecedented levels of street disorder, open-air hard drug use, and disruption to community safety and individual health. Therefore:</p><p>1 Are you in favour of the City of Vancouver strengthening its laws to forbid open-air hard drug (Heroin, Meth, Fentanyl, and Crack) use in public spaces?</p><p>2 Should the City of Vancouver formally ask the Province of BC to convert portions of the old St. Paul’s Hospital or another similar site into a secure medical facility that provides acute voluntary and 100-plus involuntary care beds for individuals posing a serious risk to themselves or others due to severe substance use and mental health disorders?"
     },
     {
         "refid": "85",
