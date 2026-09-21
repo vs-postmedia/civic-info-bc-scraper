@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import saveData from './scripts/save-data.js';
+import chineseNames from './data/names-chinese.js';
 import ballotSummaries from './data/ballot-summaries.js';
 import schoolDistrictLookup from './data/schoolDistrictLookup.js';
 
@@ -34,6 +35,29 @@ async function addBallotResults(processedData, ballotResults) {
 	return processedData.map(item => ({
 		...item,
 		ballot_results: ballotResults.filter(({ id }) => id === item.id)
+	}));
+}
+
+async function addChineseNames(chineseNames, data) {
+	const chineseNameLookup = new Map(
+		chineseNames.map(candidate => [
+			[ candidate.id, candidate.candidate_first_name, candidate.candidate_last_name ]
+				.map(value => String(value || '').trim())
+				.join('|'),
+			candidate.candidate_chinese_name
+		])
+	);
+
+	return data.map(item => ({
+		...item,
+		candidates: (item.candidates || []).map(candidate => ({
+			...candidate,
+			candidate_chinese_name: chineseNameLookup.get(
+				[ item.id, candidate.candidate_first_name, candidate.candidate_last_name ]
+					.map(value => String(value || '').trim())
+					.join('|')
+			) ?? null
+		}))
 	}));
 }
 
@@ -156,7 +180,18 @@ function stripCandidateFields(candidates) {
 	return (candidates || []).map(candidate => {
 		const filtered = { ...candidate };
 		CANDIDATE_FIELDS_TO_REMOVE.forEach(field => delete filtered[field]);
-		
+
+		if (filtered.electoral_organization) {
+			const {
+				electoral_organization_address,
+				electoral_organization_city,
+				electoral_organization_phone,
+				electoral_organization_email,
+				...organization
+			} = filtered.electoral_organization;
+			filtered.electoral_organization = organization;
+		}
+
 		['candidate_first_name', 'candidate_last_name'].forEach(field => {
 			if (typeof filtered[field] === 'string') {
 				filtered[field] = filtered[field].replace(/&#39;/g, '’');
@@ -236,7 +271,12 @@ async function processData(councilData, vanParkData) {
 				}
 			};
 		})(),
-		...(id === '139' && { park_board: vanParkData }) // add vancouver park board
+		...(id === '139' && {
+			park_board: vanParkData && {
+				...vanParkData,
+				candidates: stripCandidateFields(vanParkData.candidates)
+			}
+		}) // add vancouver park board
 	}));
 
 	// Electoral Area A
@@ -265,7 +305,7 @@ async function init() {
 	// PROCESS DATA
 	*/
 
-	// add summaries to ballot data
+	// add summaries & edited  to ballot data
 	const ballotResults = mergeBallotResults(ballotSummaries, ballotData);
  
 	// we only want some fields from Vancouver Park Board
@@ -293,7 +333,10 @@ async function init() {
 		
 	const processedData = await processData(councilData, vanParkData[0]);
 
-	const finalData = await addBallotResults(processedData, ballotResults);
+	const dataWithBallots = await addBallotResults(processedData, ballotResults);
+
+	const finalData = await addChineseNames(chineseNames, dataWithBallots);
+
 	
 	// not sure if we'll use this...
 	const turnoutData = await getTurnout(finalData);
