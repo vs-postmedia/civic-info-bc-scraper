@@ -633,7 +633,7 @@ export default [
     "id": "139",
     "candidate_first_name": "Solomon",
     "candidate_last_name": "Yi-Kieran",
-    "candidate_chinese_name": null
+    "candidate_chinese_name": "易行天"
   },
   {
     "id": "139",
