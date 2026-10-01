@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import saveData from './scripts/save-data.js';
 import chineseNames from './data/names-chinese.js';
 import ballotSummaries from './data/ballot-summaries.js';
+import processMayors from './scripts/metro-mayor-map.js';
 import schoolDistrictLookup from './data/schoolDistrictLookup.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -212,7 +213,8 @@ function mergeBallotResults(ballotSummaries, ballotData) {
 	return mergedData.filter(d => ballotLookup.includes(d.name)); 
 }
 
-async function processData(councilData, vanParkData) {	
+async function processData(councilData, vanParkData) {
+	// map school districts to city id
 	const schoolDistrictAreaIdsByMunicipalityId = new Map(
 		schoolDistrictLookup.map(({ id, school_district_areas }) => [
 			id,
@@ -337,6 +339,9 @@ async function init() {
 
 	const finalData = await addChineseNames(chineseNames, dataWithBallots);
 
+	// process & save data for mayoral race summary map
+	const mayorData = processMayors(processedData);
+
 	
 	// not sure if we'll use this...
 	const turnoutData = await getTurnout(finalData);
@@ -347,11 +352,19 @@ async function init() {
 		timestamp: formatTimestamp()
 	};
 
+	
 	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
 	saveData(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
+	saveData(processedData, path.join(__dirname, `${data_dir}/mayor-map-2026`), 'json');
 }
-
 
 // kick isht off!!!
 init(); 
+
+
+// import processedData from './data/processed-data.js';
+// function mayorTest() {
+// 	const mayorData = processMayors(processedData);
+// }
+// mayorTest()
 
