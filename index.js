@@ -22,7 +22,7 @@ const filename = 'data'; // temp file for data
 const ballotLookup = ['Langley (City)', 'Metro Vancouver (Regional District)', 'Vancouver'];
 
 // API URLS
-const councilUrl = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
+const councilUrl = 'https://localelections.ca/api/api.php?region_id=9&year=2026'; 
 const parkUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=13';
 const schoolUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=12';
 const ballotUrl = 'https://localelections.ca/api/ref_api.php?year=2026';
