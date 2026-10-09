@@ -87,13 +87,17 @@ async function fetchData(url, apiKey) {
 	try {
 		const resp = await axios.get(url, {
 			headers: {
-				'api-key': apiKey
+				'api-key': apiKey,
+				'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/141.0.0.0 Safari/537.36',
+        		'Accept': 'application/json,text/plain,*/*',
+        		'Referer': 'https://localelections.ca/',
+        		'Origin': 'https://localelections.ca'
 			}
 		});
 		
 		data = resp.data;
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		console.error('Error fetching data:', error.response?.data);
 	}
 
 	return data
