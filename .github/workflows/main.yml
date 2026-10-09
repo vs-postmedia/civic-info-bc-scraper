@@ -5,7 +5,7 @@ name: civic elxn26 api
 # Controls when the workflow will run
 on:
   schedule:
-  - cron: "0 0 * * *" #run at 2am daily (pst). https://crontab.guru/examples.html
+  - cron: "0 * * * *" #run at 2am daily (pst). https://crontab.guru/examples.html
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
