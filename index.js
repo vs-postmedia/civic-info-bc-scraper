@@ -97,7 +97,10 @@ async function fetchData(url, apiKey) {
 		
 		data = resp.data;
 	} catch (error) {
-		console.error('Error fetching data:', error.response?.data);
+		console.error('Status:', err.response?.status);
+    	console.error('Headers:', err.response?.headers);
+
+    throw err;
 	}
 
 	return data
