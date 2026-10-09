@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: web scraper
+name: civic elxn26 api
 
 # Controls when the workflow will run
 on:
@@ -19,7 +19,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
+    
+    env:
+      DO_SPACES_KEY: ${{ secrets.DO_SPACES_KEY }}
+      DO_SPACES_SECRET: ${{ secrets.DO_SPACES_SECRET }}
+      DO_SPACES_BUCKET: ${{ secrets.DO_SPACES_BUCKET }}
+      DO_SPACES_ENDPOINT: ${{ secrets.DO_SPACES_ENDPOINT }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
