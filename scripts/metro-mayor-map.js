@@ -1,7 +1,8 @@
+import setTimestamp from './set-timestamp.js'
+
 const metroIds = [1, 3, 6, 7, 20, 26, 61, 62, 64, 69, 82, 85, 86, 94, 98, 102, 112, 129, 139, 145, 147,180]
 
 async function processMayors(processedData) {
-
     const data = processedData
         .filter(item => metroIds.includes(Number(item.id)))
         .map(item => {
@@ -46,7 +47,10 @@ async function processMayors(processedData) {
         };
     });
 
-    return data
+    return {
+        data: data,
+        timestamp: setTimestamp()
+    }
 }
 
 

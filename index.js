@@ -1,13 +1,13 @@
 // import fs from 'fs'
 import axios from 'axios';
 import path from 'path';
-// import data2022 from './data/data2022.js';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import saveData from './scripts/save-data.js';
 import chineseNames from './data/names-chinese.js';
 import ballotSummaries from './data/ballot-summaries.js';
 import processMayors from './scripts/metro-mayor-map.js';
+import setTimestamp from './scripts/set-timestamp.js'
 import schoolDistrictLookup from './data/schoolDistrictLookup.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,18 +19,32 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 // VARS
 const data_dir = 'data';
 const filename = 'data'; // temp file for data
-const councilUrl = 'https://localelections.ca/api/api.php?region_id=9'; 
+const ballotLookup = ['Langley (City)', 'Metro Vancouver (Regional District)', 'Vancouver'];
+
+// API URLS
+const councilUrl = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 const parkUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=13';
 const schoolUrl = 'https://localelections.ca/api/api.php?jurisdiction_type=12';
 const ballotUrl = 'https://localelections.ca/api/ref_api.php?year=2026';
-const ballotLookup = ['Langley (City)', 'Metro Vancouver (Regional District)', 'Vancouver'];
-const cpMonths = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
 // const url = 'https://localelections.ca/api/api.php?region_id=9&year=2022'; 
 // region_id=9  <–– Lower Mainland: INCLUDES SCHOOL DISTRICTS
 // regional_district_id=30 <–– Metro Vancouver: NO SCHOOL DISTRICTS
 // jurisdiction_type=13 <–– park board: NEEDS SEPARATE CALL
 // jurisdiction_type=12 <–– school board
 
+const CANDIDATE_FIELDS_TO_REMOVE = [
+	'candidate_usualname',
+	'candidate_contact_consent',
+	'candidate_phone',
+	'candidate_cell',
+	'candidate_email',
+	'candidate_website',
+	'candidate_twitter',
+	'candidate_bluesky',
+	'candidate_facebook',
+	'candidate_instagram',
+	'candidate_youtube'
+];
 
 async function addBallotResults(processedData, ballotResults) {
 	return processedData.map(item => ({
@@ -80,27 +94,6 @@ async function fetchData(url, apiKey) {
 	}
 
 	return data
-}
-
-function formatTimestamp() {
-	const timestampParts = new Intl.DateTimeFormat('en-CA', {
-		timeZone: 'America/Vancouver',
-		month: 'numeric',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: '2-digit',
-		hour12: true
-	}).formatToParts();
-	
-	const timestampValues = Object.fromEntries(
-		timestampParts
-			.filter(({ type }) => type !== 'literal')
-			.map(({ type, value }) => [type, value])
-	);
-	const month = cpMonths[Number(timestampValues.month) - 1];
-	const dayPeriod = timestampValues.dayPeriod.toLowerCase();
-	
-	return `${month} ${timestampValues.day}, ${timestampValues.hour}:${timestampValues.minute} ${dayPeriod}`;
 }
 
 async function getTurnout(data) {
@@ -162,20 +155,6 @@ function mergeTrusteeCandidates(data) {
 
 	return data;
 }
-
-const CANDIDATE_FIELDS_TO_REMOVE = [
-	'candidate_usualname',
-	'candidate_contact_consent',
-	'candidate_phone',
-	'candidate_cell',
-	'candidate_email',
-	'candidate_website',
-	'candidate_twitter',
-	'candidate_bluesky',
-	'candidate_facebook',
-	'candidate_instagram',
-	'candidate_youtube'
-];
 
 function stripCandidateFields(candidates) {
 	return (candidates || []).map(candidate => {
@@ -340,7 +319,7 @@ async function init() {
 	const finalData = await addChineseNames(chineseNames, dataWithBallots);
 
 	// process & save data for mayoral race summary map
-	const mayorData = processMayors(processedData);
+	const mayorData = await processMayors(processedData);
 
 	
 	// not sure if we'll use this...
@@ -349,13 +328,13 @@ async function init() {
 	const outputData = {
 		data: finalData,
 		ballotData: ballotResults,
-		timestamp: formatTimestamp()
+		timestamp: setTimestamp()
 	};
 
 	
 	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
 	saveData(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
-	saveData(processedData, path.join(__dirname, `${data_dir}/mayor-map-2026`), 'json');
+	saveData(mayorData, path.join(__dirname, `${data_dir}/mayor-map-2026`), 'json');
 }
 
 // kick isht off!!!
