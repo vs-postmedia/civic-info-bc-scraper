@@ -13,7 +13,7 @@ import chineseNames from './data/names-chinese.js';
 import ballotSummaries from './data/ballot-summaries.js';
 import processMayors from './scripts/metro-mayor-map.js';
 import setTimestamp from './scripts/set-timestamp.js'
-import schoolDistrictLookup from './data/schoolDistrictLookup.js';
+import schoolDistrictLookup from './data/schooldistrictLookup.js';
 import { saveLocal, saveRemote } from './scripts/save-data.js';
 
 
