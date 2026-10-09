@@ -9,11 +9,11 @@
                     "candidate_last_name": "Siemens",
                     "previous_experience": "Served different",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "16037",
-                    "vote_percentage": 63.5
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Manjit",
@@ -24,7 +24,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "7705",
-                    "vote_percentage": 30.5
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "D. Paul",
@@ -33,10 +33,9 @@
                     "running_for": "MAYOR",
                     "elected": "",
                     "acclamation": "",
-                    "gender": 
-                    "M",
+                    "gender": "M",
                     "votes_for": "627",
-                    "vote_percentage": 2.5
+                    "vote_percentage": 0
                 }
             ],
             "city": "Abbotsford",
@@ -58,11 +57,11 @@
                     "candidate_last_name": "McEwen",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "595",
-                    "vote_percentage": 67.8
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Mario",
@@ -73,7 +72,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "283",
-                    "vote_percentage": 32.2
+                    "vote_percentage": 0
                 }
             ],
             "city": "Anmore",
@@ -95,11 +94,11 @@
                     "candidate_last_name": "Ross ",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "250",
-                    "vote_percentage": 59.4
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Colm",
@@ -110,7 +109,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "170",
-                    "vote_percentage": 40.4
+                    "vote_percentage": 0
                 }
             ],
             "city": "Belcarra",
@@ -158,11 +157,11 @@
                     "candidate_last_name": "Stewart",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "14105",
-                    "vote_percentage": 68.2
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Adel",
@@ -173,7 +172,7 @@
                     "acclamation": "",
                     "gender": "",
                     "votes_for": "5367",
-                    "vote_percentage": 26
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Mark",
@@ -184,7 +183,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "818",
-                    "vote_percentage": 4
+                    "vote_percentage": 0
                 }
             ],
             "city": "Coquitlam",
@@ -213,7 +212,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "17050",
-                    "vote_percentage": 75.3
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Peter",
@@ -224,7 +223,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "3751",
-                    "vote_percentage": 16.6
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Joginder",
@@ -235,7 +234,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "1341",
-                    "vote_percentage": 5.9
+                    "vote_percentage": 0
                 }
             ],
             "city": "Delta",
@@ -257,11 +256,11 @@
                     "candidate_last_name": "Pachal",
                     "previous_experience": "Served different",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "2434",
-                    "vote_percentage": 64.4
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Val",
@@ -272,7 +271,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "1290",
-                    "vote_percentage": 34.1
+                    "vote_percentage": 0
                 }
             ],
             "city": "Langley",
@@ -301,7 +300,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "10911",
-                    "vote_percentage": 42.1
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Blair",
@@ -312,7 +311,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "6805",
-                    "vote_percentage": 26.2
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Rich",
@@ -326,7 +325,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "4923",
-                    "vote_percentage": 19
+                    "vote_percentage": 0
                 }
             ],
             "city": "Langley",
@@ -348,11 +347,11 @@
                     "candidate_last_name": "Berry",
                     "previous_experience": "Unknown/Undisclosed",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "341",
-                    "vote_percentage": 48.1
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Ron",
@@ -363,7 +362,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "323",
-                    "vote_percentage": 45.6
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Tamara",
@@ -374,7 +373,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "45",
-                    "vote_percentage": 6.3
+                    "vote_percentage": 0
                 }
             ],
             "city": "Lions Bay",
@@ -403,7 +402,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "6306",
-                    "vote_percentage": 43.5
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Mike",
@@ -417,7 +416,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "4321",
-                    "vote_percentage": 29.8
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Corisa",
@@ -428,7 +427,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "2799",
-                    "vote_percentage": 19.3
+                    "vote_percentage": 0
                 }
             ],
             "city": "Maple Ridge",
@@ -457,7 +456,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "6676",
-                    "vote_percentage": 41.9
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Ken",
@@ -471,7 +470,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "5227",
-                    "vote_percentage": 32.8
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Chuck",
@@ -482,7 +481,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "3912",
-                    "vote_percentage": 24.6
+                    "vote_percentage": 0
                 }
             ],
             "city": "New Westminster",
@@ -504,11 +503,11 @@
                     "candidate_last_name": "BUCHANAN",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "5275",
-                    "vote_percentage": 56.4
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Guy",
@@ -519,7 +518,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "3923",
-                    "vote_percentage": 42
+                    "vote_percentage": 0
                 }
             ],
             "city": "North Vancouver",
@@ -541,11 +540,11 @@
                     "candidate_last_name": "Little",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "7582",
-                    "vote_percentage": 50.4
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Mathew",
@@ -556,7 +555,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "7260",
-                    "vote_percentage": 48.3
+                    "vote_percentage": 0
                 }
             ],
             "city": "North Vancouver",
@@ -630,11 +629,11 @@
                     "candidate_last_name": "Lahti",
                     "previous_experience": "Served different",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "4938",
-                    "vote_percentage": 54.9
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Steve",
@@ -645,7 +644,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "3952",
-                    "vote_percentage": 44
+                    "vote_percentage": 0
                 }
             ],
             "city": "Port Moody",
@@ -667,11 +666,11 @@
                     "candidate_last_name": "Brodie",
                     "previous_experience": "Incumbent",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "23239",
-                    "vote_percentage": 66.2
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "John",
@@ -685,7 +684,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "9304",
-                    "vote_percentage": 26.5
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Wei Ping",
@@ -696,7 +695,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "1859",
-                    "vote_percentage": 5.3
+                    "vote_percentage": 0
                 }
             ],
             "city": "Richmond",
@@ -725,7 +724,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "33311",
-                    "vote_percentage": 28
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Doug",
@@ -739,7 +738,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "32338",
-                    "vote_percentage": 27.2
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Gordie",
@@ -753,7 +752,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "24916",
-                    "vote_percentage": 21
+                    "vote_percentage": 0
                 }
             ],
             "city": "Surrey",
@@ -782,7 +781,7 @@
                     "acclamation": "",
                     "gender": "",
                     "votes_for": "85732",
-                    "vote_percentage": 50
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Kennedy",
@@ -796,7 +795,7 @@
                     "acclamation": "",
                     "gender": "",
                     "votes_for": "49593",
-                    "vote_percentage": 28.9
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Colleen",
@@ -810,7 +809,7 @@
                     "acclamation": "",
                     "gender": "",
                     "votes_for": "16769",
-                    "vote_percentage": 9.8
+                    "vote_percentage": 0
                 }
             ],
             "city": "Vancouver",
@@ -1285,11 +1284,11 @@
                     "candidate_last_name": "Sager",
                     "previous_experience": "Served prior to 2018",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "6082",
-                    "vote_percentage": 52.8
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Mary-Ann",
@@ -1300,7 +1299,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "2833",
-                    "vote_percentage": 24.6
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Marcus",
@@ -1311,7 +1310,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "2436",
-                    "vote_percentage": 21.1
+                    "vote_percentage": 0
                 }
             ],
             "city": "West Vancouver",
@@ -1333,11 +1332,11 @@
                     "candidate_last_name": "Knight",
                     "previous_experience": "Served prior to 2018",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "2001",
-                    "vote_percentage": 37.5
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Darryl",
@@ -1348,7 +1347,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "1811",
-                    "vote_percentage": 33.9
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "Erika",
@@ -1359,7 +1358,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "833",
-                    "vote_percentage": 15.6
+                    "vote_percentage": 0
                 }
             ],
             "city": "White Rock",
@@ -1381,11 +1380,11 @@
                     "candidate_last_name": "LEONARD",
                     "previous_experience": "None",
                     "running_for": "MAYOR",
-                    "elected": "YES",
+                    "elected": "",
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "860",
-                    "vote_percentage": 24.1
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "MAUREEN ",
@@ -1396,7 +1395,7 @@
                     "acclamation": "",
                     "gender": "F",
                     "votes_for": "728",
-                    "vote_percentage": 20.4
+                    "vote_percentage": 0
                 },
                 {
                     "candidate_first_name": "JOHN ",
@@ -1407,7 +1406,7 @@
                     "acclamation": "",
                     "gender": "M",
                     "votes_for": "320",
-                    "vote_percentage": 9
+                    "vote_percentage": 0
                 }
             ],
             "city": "Bowen Island",
