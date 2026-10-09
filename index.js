@@ -2,19 +2,22 @@
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+// load .env from this project's directory, regardless of cwd
 import dotenv from 'dotenv';
-import saveData from './scripts/save-data.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.join(__dirname, '.env') });
+
 import chineseNames from './data/names-chinese.js';
 import ballotSummaries from './data/ballot-summaries.js';
 import processMayors from './scripts/metro-mayor-map.js';
 import setTimestamp from './scripts/set-timestamp.js'
 import schoolDistrictLookup from './data/schoolDistrictLookup.js';
+import { saveLocal, saveRemote } from './scripts/save-data.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-// load .env from this project's directory, regardless of cwd
-dotenv.config({ path: path.join(__dirname, '.env') });
+
 
 // VARS
 const data_dir = 'data';
@@ -332,9 +335,27 @@ async function init() {
 	};
 
 	
-	saveData(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
-	saveData(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
-	saveData(mayorData, path.join(__dirname, `${data_dir}/mayor-map-2026`), 'json');
+	// saveLocal(outputData, path.join(__dirname, `${data_dir}/data-2026`), 'json');
+	// saveLocal(turnoutData, path.join(__dirname, `${data_dir}/turnout-2026`), 'json');
+	// saveLocal(mayorData, path.join(__dirname, `${data_dir}/mayor-map-2026`), 'json');
+	saveRemote(
+		outputData,
+		'civic-results-2026',
+		'json',
+		'elxn/elxn2026'
+	);
+	saveRemote(
+		mayorData,
+		'mayor-map-2026',
+		'json',
+		'elxn/elxn2026'
+	);
+	saveRemote(
+		turnoutData,
+		'civic-turnout-2026',
+		'json',
+		'elxn/elxn2026'
+	);
 }
 
 // kick isht off!!!
